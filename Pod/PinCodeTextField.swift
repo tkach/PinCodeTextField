@@ -9,23 +9,29 @@
 import Foundation
 import UIKit
 
-@IBDesignable public class PinCodeTextField: UILabel {
+@IBDesignable public class PinCodeTextField: UIView {
     
     @IBInspectable public var underlineWidth: CGFloat = 40
     @IBInspectable public var underlineSpacing: CGFloat = 10
     @IBInspectable public var characterLimit: Int = 5
     @IBInspectable public var underlineHeight: CGFloat = 3
     @IBInspectable public var placeholderText: String?
+    @IBInspectable public var text: String?
+    
+    @IBInspectable public var fontSize: CGFloat = 14 {
+        didSet {
+            updateView()
+        }
+    }
+    @IBInspectable public var textColor: UIColor = UIColor.clear
+    @IBInspectable public var placeholderColor: UIColor = UIColor.lightGray
     
     public var underlineColor: UIColor = UIColor.darkGray
-    public var placeholderColor: UIColor = UIColor.lightGray
     public var keyboardType: UIKeyboardType = .decimalPad
+    public var font: UIFont = UIFont.systemFont(ofSize: 14)
     
-    fileprivate var inputText: String?
     fileprivate var labels: [UILabel] = []
     fileprivate var underlines: [UIView] = []
-    
-    fileprivate var originalTextColor: UIColor = UIColor.black
     
     
     //MARK: Awake
@@ -34,17 +40,12 @@ import UIKit
         updateSubviewsWithXibLoadedProperties()
     }
     
-    private func updateSubviewsWithXibLoadedProperties() {
-        inputText = text
-        // we could just set text = nil here, but label stop rendering and responding to touches after that
-        // that's why we just clear the textColor and remember originalTextColor
-        originalTextColor = textColor
-        textColor = UIColor.clear
-        updateView()
-    }
-    
     override public func prepareForInterfaceBuilder() {
         updateSubviewsWithXibLoadedProperties()
+    }
+    
+    private func updateSubviewsWithXibLoadedProperties() {
+        updateView()
     }
     
     ///MARK: Overrides
@@ -56,6 +57,7 @@ import UIKit
     override public var canBecomeFirstResponder: Bool {
         return true
     }
+    
     
     ///MARK: Private
     fileprivate func updateView() {
@@ -101,30 +103,31 @@ import UIKit
             let i = labels.index(of: label) ?? 0
             let char = textOrPlaceholderChar(atIndex: i)
             label.text = char.map { String($0) }
+            label.font = font.withSize(fontSize)
             let isplaceholder = isPlaceholder(index: i)
             updateLabelStyle(label, isPlaceholder: isplaceholder)
         }
     }
     
     private func updateLabelStyle(_ label: UILabel, isPlaceholder: Bool) {
-        label.textColor = isPlaceholder ? placeholderColor : originalTextColor
+        label.textColor = isPlaceholder ? placeholderColor : textColor
     }
     
     private func isPlaceholder(index i: Int) -> Bool {
-        let inputTextCount = inputText?.characters.count ?? 0
+        let inputTextCount = text?.characters.count ?? 0
         return i >= inputTextCount
     }
     
     private func textOrPlaceholderChar(atIndex i: Int) -> Character? {
-        let inputTextCount = inputText?.characters.count ?? 0
+        let inputTextCount = text?.characters.count ?? 0
         let placeholderTextLength = placeholderText?.characters.count ?? 0
         if i < inputTextCount {
-            let string = inputText!
+            let string = text ?? ""
             let c = string[string.characters.index(string.startIndex, offsetBy: i)]
             return c
         }
         else if i < placeholderTextLength {
-            let string = placeholderText!
+            let string = placeholderText ?? ""
             let c = string[string.characters.index(string.startIndex, offsetBy: i)]
             return c
         }
@@ -180,7 +183,7 @@ import UIKit
 
 extension PinCodeTextField: UIKeyInput {
     public var hasText: Bool {
-        return inputText.map{ !$0.isEmpty } ?? false
+        return text.map{ !$0.isEmpty } ?? false
     }
     
     public func insertText(_ charToInsert: String) {
@@ -189,9 +192,9 @@ extension PinCodeTextField: UIKeyInput {
             resignFirstResponder()
         }
         else {
-            let newText = inputText.map { $0 + charToInsert } ?? charToInsert
+            let newText = text.map { $0 + charToInsert } ?? charToInsert
             guard newText.characters.count <= characterLimit else { return }
-            inputText = newText
+            text = newText
             updateView()
             if (newText.characters.count == characterLimit) {
                 resignFirstResponder()
@@ -201,7 +204,7 @@ extension PinCodeTextField: UIKeyInput {
     
     public func deleteBackward() {
         guard hasText else { return }
-        inputText?.characters.removeLast()
+        text?.characters.removeLast()
         updateView()
     }
 }
