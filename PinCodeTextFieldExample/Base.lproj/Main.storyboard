@@ -29,7 +29,7 @@
                                     <constraint firstAttribute="width" constant="300" id="bQ1-gM-syV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.41568627450000001" green="0.18039215689999999" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="placeholderWidth">
@@ -45,17 +45,18 @@
                                         <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="underlineWidth">
-                                        <real key="value" value="29"/>
+                                        <real key="value" value="25"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="characterLimit">
-                                        <integer key="value" value="4"/>
+                                        <integer key="value" value="6"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="underlineHeight">
-                                        <real key="value" value="2"/>
+                                        <real key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="underlineSpacing">
-                                        <real key="value" value="7"/>
+                                        <real key="value" value="11"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="********"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
