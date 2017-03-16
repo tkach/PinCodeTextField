@@ -18,15 +18,11 @@ import UIKit
     @IBInspectable public var placeholderText: String?
     @IBInspectable public var text: String?
     
-    @IBInspectable public var fontSize: CGFloat = 14 {
-        didSet {
-            updateView()
-        }
-    }
-    @IBInspectable public var textColor: UIColor = UIColor.clear
+    @IBInspectable public var fontSize: CGFloat = 14
+    @IBInspectable public var textColor: UIColor = UIColor.clear 
     @IBInspectable public var placeholderColor: UIColor = UIColor.lightGray
+    @IBInspectable public var underlineColor: UIColor = UIColor.darkGray
     
-    public var underlineColor: UIColor = UIColor.darkGray
     public var keyboardType: UIKeyboardType = .decimalPad
     public var font: UIFont = UIFont.systemFont(ofSize: 14)
     

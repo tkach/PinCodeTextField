@@ -29,11 +29,9 @@
                                     <constraint firstAttribute="width" constant="240" id="PbI-fa-Xh0"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="ff"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="****"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="underlineHeight">
                                         <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
@@ -50,8 +48,13 @@
                                         <color key="value" cocoaTouchSystemColor="lightTextColor"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                        <real key="value" value="18"/>
+                                        <real key="value" value="22"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
+                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="XXXX"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="1245"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
