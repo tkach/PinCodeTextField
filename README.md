@@ -3,8 +3,9 @@ Simple pin code text input with underlined space for characters
 Demo
 ----
 
-# ![Screenshot](https://raw.githubusercontent.com/tkach/PinCodeTextField/master/demo.gif = 250x)
+<img src="https://raw.githubusercontent.com/tkach/PinCodeTextField/master/demo.gif" alt="Drawing" style="width: 200px;"/>
 
 Easily customized via Storyboard or Xib
 ----
-# ![Screenshot](https://raw.githubusercontent.com/tkach/PinCodeTextField/master/demo-storyboard.gif = 250x)
+
+<img src="https://raw.githubusercontent.com/tkach/PinCodeTextField/master/demo-storyboard.gif" alt="Drawing" style="width: 200px;"/>
