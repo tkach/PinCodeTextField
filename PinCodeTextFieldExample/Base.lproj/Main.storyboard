@@ -45,7 +45,7 @@
                                         <real key="value" value="21"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                        <real key="value" value="14"/>
+                                        <real key="value" value="21"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
                                         <color key="value" red="1" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.96999999999999997" colorSpace="calibratedRGB"/>
@@ -54,13 +54,15 @@
                                         <color key="value" red="0.17254901959999999" green="0.70980392160000005" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="XXXXX"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="91"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="underlineHSpacing">
                                         <real key="value" value="7"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="underlineVMargin">
-                                        <real key="value" value="6"/>
+                                        <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="33"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="secureText" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>

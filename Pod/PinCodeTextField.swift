@@ -31,6 +31,16 @@ import UIKit
     public var keyboardType: UIKeyboardType = .decimalPad
     public var font: UIFont = UIFont.systemFont(ofSize: 14)
     
+    @IBInspectable public var secureText: Bool = false
+    public var isSecureTextEntry: Bool {
+        get {
+            return secureText
+        }
+        @objc(setSecureTextEntry:) set {
+            secureText = newValue
+        }
+    }
+    
     fileprivate var labels: [UILabel] = []
     fileprivate var underlines: [UIView] = []
     
@@ -123,17 +133,19 @@ import UIKit
     private func textOrPlaceholderChar(atIndex i: Int) -> Character? {
         let inputTextCount = text?.characters.count ?? 0
         let placeholderTextLength = placeholderText?.characters.count ?? 0
+        let character: Character?
         if i < inputTextCount {
             let string = text ?? ""
-            let c = string[string.characters.index(string.startIndex, offsetBy: i)]
-            return c
+            character = isSecureTextEntry ? "•" : string[string.characters.index(string.startIndex, offsetBy: i)]
         }
         else if i < placeholderTextLength {
             let string = placeholderText ?? ""
-            let c = string[string.characters.index(string.startIndex, offsetBy: i)]
-            return c
+            character = string[string.characters.index(string.startIndex, offsetBy: i)]
         }
-        return nil
+        else {
+            character = nil
+        }
+        return character
     }
     
     fileprivate func createLabel() -> UILabel {
