@@ -12,13 +12,18 @@ import UIKit
 @IBDesignable public class PinCodeTextField: UIView {
     
     @IBInspectable public var underlineWidth: CGFloat = 40
-    @IBInspectable public var underlineSpacing: CGFloat = 10
+    @IBInspectable public var underlineHSpacing: CGFloat = 10
+    @IBInspectable public var underlineVMargin: CGFloat = 0
     @IBInspectable public var characterLimit: Int = 5
     @IBInspectable public var underlineHeight: CGFloat = 3
     @IBInspectable public var placeholderText: String?
     @IBInspectable public var text: String?
     
-    @IBInspectable public var fontSize: CGFloat = 14
+    @IBInspectable public var fontSize: CGFloat = 14 {
+        didSet {
+            font = font.withSize(fontSize)
+        }
+    }
     @IBInspectable public var textColor: UIColor = UIColor.clear 
     @IBInspectable public var placeholderColor: UIColor = UIColor.lightGray
     @IBInspectable public var underlineColor: UIColor = UIColor.darkGray
@@ -64,6 +69,7 @@ import UIKit
             recreateLabels()
         }
         updateLabels()
+        setNeedsLayout()
     }
     
     private func needToRecreateUnderlines() -> Bool {
@@ -78,9 +84,9 @@ import UIKit
         underlines.forEach{ $0.removeFromSuperview() }
         
         for _ in 1...characterLimit {
-            let placeholder = createUnderline()
-            underlines.append(placeholder)
-            addSubview(placeholder)
+            let underline = createUnderline()
+            underlines.append(underline)
+            addSubview(underline)
         }
     }
     
@@ -99,7 +105,7 @@ import UIKit
             let i = labels.index(of: label) ?? 0
             let char = textOrPlaceholderChar(atIndex: i)
             label.text = char.map { String($0) }
-            label.font = font.withSize(fontSize)
+            label.font = font
             let isplaceholder = isPlaceholder(index: i)
             updateLabelStyle(label, isPlaceholder: isplaceholder)
         }
@@ -139,27 +145,30 @@ import UIKit
     }
     
     private func createUnderline() -> UIView {
-        let placeholder = UIView()
-        placeholder.backgroundColor = underlineColor
-        return placeholder
+        let underline = UIView()
+        underline.backgroundColor = underlineColor
+        return underline
     }
     
     private func layoutCharactersAndPlaceholders() {
         let marginsCount = characterLimit - 1
-        let totalMarginsWidth = underlineSpacing * CGFloat(marginsCount)
-        let totalPlaceholdersWidth = underlineWidth * CGFloat(characterLimit)
+        let totalMarginsWidth = underlineHSpacing * CGFloat(marginsCount)
+        let totalUnderlinesWidth = underlineWidth * CGFloat(characterLimit)
         
-        var currentLabelX: CGFloat = bounds.width / 2 - (totalPlaceholdersWidth + totalMarginsWidth) / 2
-        var currentPlaceholderX = currentLabelX
+        var currentLabelX: CGFloat = bounds.width / 2 - (totalUnderlinesWidth + totalMarginsWidth) / 2
+        var currentUnderlineX = currentLabelX
+        let totalLabelHeight = font.ascender + font.descender
+        let underlineY = bounds.height / 2 + totalLabelHeight / 2 + underlineVMargin
+        
         
         underlines.forEach{
-            $0.frame = CGRect(x: currentPlaceholderX, y: bounds.size.height - underlineHeight, width: underlineWidth, height: underlineHeight)
-            currentPlaceholderX += underlineWidth + underlineSpacing
+            $0.frame = CGRect(x: currentUnderlineX, y: underlineY, width: underlineWidth, height: underlineHeight)
+            currentUnderlineX += underlineWidth + underlineHSpacing
         }
         
         labels.forEach {
-            $0.frame = CGRect(x: currentLabelX, y: 0, width: underlineWidth, height: bounds.size.height)
-            currentLabelX += underlineWidth + underlineSpacing
+            $0.frame = CGRect(x: currentLabelX, y: 0, width: underlineWidth, height: bounds.height)
+            currentLabelX += underlineWidth + underlineHSpacing
         }
         
     }
