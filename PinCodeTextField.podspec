@@ -11,13 +11,13 @@ Pod::Spec.new do |s|
 
   s.homepage     = "https://github.com/tkach/PinCodeTextField"
 
-  s.license      = "MIT"
+  s.license      = { :type => "MIT", :file => 'MIT-LICENSE.txt' }
 
 
-  s.author             = { "Alex Tkachenko" => "tkach2004@gmail.com" }
+  s.author       = { "Alex Tkachenko" => "tkach2004@gmail.com" }
   s.platform     = :ios, "8.0"
 
   s.source       = { :git => "https://github.com/tkach/PinCodeTextField.git", :tag => "0.0.1" }
 
-  s.source_files  = "Pod"
+  s.source_files  = "Pod", "Pod/**/*.{swift}"
 end
