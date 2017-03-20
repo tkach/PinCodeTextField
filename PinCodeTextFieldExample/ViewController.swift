@@ -8,15 +8,27 @@
 
 import UIKit
 
-class ViewController: UIViewController, PinCodeTextFieldDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet weak var pinCodeTextField: PinCodeTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         pinCodeTextField.delegate = self
+        pinCodeTextField.keyboardType = .numberPad
     }
 
+    override public var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
+    override public var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
+}
+
+
+extension ViewController: PinCodeTextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: PinCodeTextField) -> Bool {
         return true
     }
@@ -32,7 +44,4 @@ class ViewController: UIViewController, PinCodeTextFieldDelegate {
     func textFieldShouldReturn(_ textField: PinCodeTextField) -> Bool {
         return true
     }
-    
-
 }
-
