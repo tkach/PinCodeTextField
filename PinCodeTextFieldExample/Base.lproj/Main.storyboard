@@ -30,38 +30,37 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" red="0.87058823529999996" green="0.93725490199999995" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.94901960780000005" green="0.1450980392" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="underlineHeight">
-                                        <real key="value" value="2"/>
+                                        <real key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="characterLimit">
-                                        <integer key="value" value="4"/>
+                                        <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="underlineSpacing">
                                         <real key="value" value="14"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="underlineWidth">
-                                        <real key="value" value="21"/>
+                                        <real key="value" value="24"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                        <real key="value" value="21"/>
+                                        <real key="value" value="27"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
-                                        <color key="value" red="1" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.96999999999999997" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.86244612070000004" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" red="0.17254901959999999" green="0.70980392160000005" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="xxxx"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="xxxxxxx"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="underlineHSpacing">
-                                        <real key="value" value="7"/>
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="underlineVMargin">
-                                        <real key="value" value="4"/>
+                                        <real key="value" value="11"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="33"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="secureText" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
