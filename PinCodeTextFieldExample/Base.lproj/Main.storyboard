@@ -53,7 +53,7 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
                                         <color key="value" red="0.17254901959999999" green="0.70980392160000005" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="XXXXX"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="xxxx"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="underlineHSpacing">
                                         <real key="value" value="7"/>
                                     </userDefinedRuntimeAttribute>
@@ -62,7 +62,7 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="NO"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="text" value="33"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="secureText" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="secureText" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -72,6 +72,9 @@
                             <constraint firstItem="9MF-iO-F1j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GFN-7J-M1g"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="pinCodeTextField" destination="9MF-iO-F1j" id="cDg-hG-6X7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

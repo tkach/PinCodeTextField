@@ -15,6 +15,10 @@
 		B5EFAB6F1E7A7C6D00AE87FA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5EFAB691E7A7C6D00AE87FA /* Info.plist */; };
 		B5EFAB701E7A7C6D00AE87FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EFAB6A1E7A7C6D00AE87FA /* ViewController.swift */; };
 		B5F0842B1E7996A70058D4A2 /* PinCodeTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0842A1E7996A70058D4A2 /* PinCodeTextFieldTests.swift */; };
+		B5FFAC1D1E806A31000011DD /* PinCodeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFAC1C1E806A31000011DD /* PinCodeTextFieldDelegate.swift */; };
+		B5FFAC201E806A5E000011DD /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFAC1E1E806A5E000011DD /* IntExtension.swift */; };
+		B5FFAC211E806A5E000011DD /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFAC1F1E806A5E000011DD /* StringExtension.swift */; };
+		B5FFAC231E806A65000011DD /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FFAC221E806A65000011DD /* TextHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +43,10 @@
 		B5F084261E7996A70058D4A2 /* PinCodeTextFieldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinCodeTextFieldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F0842A1E7996A70058D4A2 /* PinCodeTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeTextFieldTests.swift; sourceTree = "<group>"; };
 		B5F0842C1E7996A70058D4A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5FFAC1C1E806A31000011DD /* PinCodeTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeTextFieldDelegate.swift; sourceTree = "<group>"; };
+		B5FFAC1E1E806A5E000011DD /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntExtension.swift; path = Extensions/IntExtension.swift; sourceTree = "<group>"; };
+		B5FFAC1F1E806A5E000011DD /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = Extensions/StringExtension.swift; sourceTree = "<group>"; };
+		B5FFAC221E806A65000011DD /* TextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextHelper.swift; path = TextHelper/TextHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +70,10 @@
 		B5EFAB5F1E7A7C5400AE87FA /* Pod */ = {
 			isa = PBXGroup;
 			children = (
+				B5FFAC191E80682B000011DD /* TextHelper */,
+				B5FFAC141E8064EE000011DD /* Extensions */,
 				B5EFAB601E7A7C5400AE87FA /* PinCodeTextField.swift */,
+				B5FFAC1C1E806A31000011DD /* PinCodeTextFieldDelegate.swift */,
 			);
 			path = Pod;
 			sourceTree = "<group>";
@@ -106,6 +117,23 @@
 				B5F0842C1E7996A70058D4A2 /* Info.plist */,
 			);
 			path = PinCodeTextFieldTests;
+			sourceTree = "<group>";
+		};
+		B5FFAC141E8064EE000011DD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B5FFAC1E1E806A5E000011DD /* IntExtension.swift */,
+				B5FFAC1F1E806A5E000011DD /* StringExtension.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		B5FFAC191E80682B000011DD /* TextHelper */ = {
+			isa = PBXGroup;
+			children = (
+				B5FFAC221E806A65000011DD /* TextHelper.swift */,
+			);
+			name = TextHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,8 +241,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5EFAB701E7A7C6D00AE87FA /* ViewController.swift in Sources */,
+				B5FFAC1D1E806A31000011DD /* PinCodeTextFieldDelegate.swift in Sources */,
+				B5FFAC211E806A5E000011DD /* StringExtension.swift in Sources */,
 				B5EFAB6B1E7A7C6D00AE87FA /* AppDelegate.swift in Sources */,
+				B5FFAC201E806A5E000011DD /* IntExtension.swift in Sources */,
 				B5EFAB611E7A7C5400AE87FA /* PinCodeTextField.swift in Sources */,
+				B5FFAC231E806A65000011DD /* TextHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

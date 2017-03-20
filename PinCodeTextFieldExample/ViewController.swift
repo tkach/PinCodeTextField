@@ -8,21 +8,31 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, PinCodeTextFieldDelegate {
 
+    @IBOutlet weak var pinCodeTextField: PinCodeTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        // Do any additional setup after loading the view, typically from a nib.
-//        let textField = PinCodeTextField(frame: CGRect(x: 10, y: 40, width: 300, height: 50))
-//        view.addSubview(textField)
-//        textField.backgroundColor = UIColor.darkGray
+        pinCodeTextField.delegate = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func textFieldShouldBeginEditing(_ textField: PinCodeTextField) -> Bool {
+        return true
     }
-
+    
+    func textFieldDidBeginEditing(_ textField: PinCodeTextField) {
+        
+    }
+    
+    func textFieldShouldEndEditing(_ textField: PinCodeTextField) -> Bool {
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: PinCodeTextField) -> Bool {
+        return true
+    }
+    
 
 }
 

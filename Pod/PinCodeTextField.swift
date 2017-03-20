@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 @IBDesignable public class PinCodeTextField: UIView {
+    weak var delegate: PinCodeTextFieldDelegate?
     
     //MARK: Customizable from Interface Builder
     @IBInspectable public var underlineWidth: CGFloat = 40
@@ -52,7 +53,7 @@ import UIKit
     //MARK: Init and awake
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.postInitialize()
+        postInitialize()
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -72,7 +73,7 @@ import UIKit
         updateView()
     }
     
-    ///MARK: Overrides
+    //MARK: Overrides
     override public func layoutSubviews() {
         layoutCharactersAndPlaceholders()
         super.layoutSubviews()
@@ -82,7 +83,17 @@ import UIKit
         return true
     }
     
-    ///MARK: Private
+    override public func becomeFirstResponder() -> Bool {
+        delegate?.textFieldDidBeginEditing(self)
+        return super.becomeFirstResponder()
+    }
+    
+    override public func resignFirstResponder() -> Bool {
+        delegate?.textFieldDidEndEditing(self)
+        return super.resignFirstResponder()
+    }
+    
+    //MARK: Private
     fileprivate func updateView() {
         if (needToRecreateUnderlines()) {
             recreateUnderlines()
@@ -104,8 +115,8 @@ import UIKit
     
     private func recreateUnderlines() {
         underlines.forEach{ $0.removeFromSuperview() }
-        
-        for _ in 1...characterLimit {
+        underlines.removeAll()
+        characterLimit.times {
             let underline = createUnderline()
             underlines.append(underline)
             addSubview(underline)
@@ -114,8 +125,8 @@ import UIKit
     
     private func recreateLabels() {
         labels.forEach{ $0.removeFromSuperview() }
-        labels = []
-        for _ in 1...characterLimit {
+        labels.removeAll()
+        characterLimit.times {
             let label = createLabel()
             labels.append(label)
             addSubview(label)
@@ -123,41 +134,24 @@ import UIKit
     }
     
     private func updateLabels() {
+        let textHelper = TextHelper(text: text, placeholder: placeholderText, isSecure: isSecureTextEntry)
         for label in labels {
-            let i = labels.index(of: label) ?? 0
-            let char = textOrPlaceholderChar(atIndex: i)
-            label.text = char.map { String($0) }
+            let index = labels.index(of: label) ?? 0
+            let currentCharacter = textHelper.character(atIndex: index)
+            label.text = currentCharacter.map { String($0) }
             label.font = font
-            let isplaceholder = isPlaceholder(index: i)
-            updateLabelStyle(label, isPlaceholder: isplaceholder)
+            let isplaceholder = isPlaceholder(index)
+            label.textColor = labelColor(isPlaceholder: isplaceholder)
         }
     }
     
-    private func updateLabelStyle(_ label: UILabel, isPlaceholder: Bool) {
-        label.textColor = isPlaceholder ? placeholderColor : textColor
+    private func labelColor(isPlaceholder placeholder: Bool) -> UIColor {
+        return placeholder ? placeholderColor : textColor
     }
     
-    private func isPlaceholder(index i: Int) -> Bool {
+    private func isPlaceholder(_ i: Int) -> Bool {
         let inputTextCount = text?.characters.count ?? 0
         return i >= inputTextCount
-    }
-    
-    private func textOrPlaceholderChar(atIndex i: Int) -> Character? {
-        let inputTextCount = text?.characters.count ?? 0
-        let placeholderTextLength = placeholderText?.characters.count ?? 0
-        let character: Character?
-        if i < inputTextCount {
-            let string = text ?? ""
-            character = isSecureTextEntry ? "•" : string[string.characters.index(string.startIndex, offsetBy: i)]
-        }
-        else if i < placeholderTextLength {
-            let string = placeholderText ?? ""
-            character = string[string.characters.index(string.startIndex, offsetBy: i)]
-        }
-        else {
-            character = nil
-        }
-        return character
     }
     
     private func createLabel() -> UILabel {
@@ -184,7 +178,6 @@ import UIKit
         let totalLabelHeight = font.ascender + font.descender
         let underlineY = bounds.height / 2 + totalLabelHeight / 2 + underlineVMargin
         
-        
         underlines.forEach{
             $0.frame = CGRect(x: currentUnderlineX, y: underlineY, width: underlineWidth, height: underlineHeight)
             currentUnderlineX += underlineWidth + underlineHSpacing
@@ -197,19 +190,21 @@ import UIKit
         
     }
     
-    ///MARK: Touches
+    //MARK: Touches
     override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {
             return
         }
         let location = touch.location(in: self)
         if (bounds.contains(location)) {
-            becomeFirstResponder()
+            if (delegate?.textFieldShouldBeginEditing(self) ?? true) {
+                let _ = becomeFirstResponder()
+            }
         }
     }
     
     
-    ///MARK: Text processing
+    //MARK: Text processing
     func canInsertCharacter(_ character: String) -> Bool {
         let newText = text.map { $0 + character } ?? character
         let isNewline = character.hasOnlyNewlineSymbols
@@ -220,6 +215,7 @@ import UIKit
 }
 
 
+//MARK: UIKeyInput
 extension PinCodeTextField: UIKeyInput {
     public var hasText: Bool {
         if let text = text {
@@ -231,16 +227,19 @@ extension PinCodeTextField: UIKeyInput {
     }
     
     public func insertText(_ charToInsert: String) {
-        
         if charToInsert.hasOnlyNewlineSymbols {
-            resignFirstResponder()
+            if (delegate?.textFieldShouldReturn(self) ?? true) {
+                let _ = resignFirstResponder()
+            }
         }
         else if canInsertCharacter(charToInsert) {
             let newText = text.map { $0 + charToInsert } ?? charToInsert
             text = newText
             updateView()
             if (newText.characters.count == characterLimit) {
-                resignFirstResponder()
+                if (delegate?.textFieldShouldEndEditing(self) ?? true) {
+                    let _ = resignFirstResponder()
+                }
             }
         }
     }
@@ -252,9 +251,3 @@ extension PinCodeTextField: UIKeyInput {
     }
 }
 
-
-fileprivate extension String {
-    var hasOnlyNewlineSymbols: Bool {
-        return trimmingCharacters(in: CharacterSet.newlines).isEmpty
-    }
-}
