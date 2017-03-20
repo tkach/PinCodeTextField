@@ -11,6 +11,7 @@ import UIKit
 
 @IBDesignable public class PinCodeTextField: UIView {
     
+    //MARK: Customizable from Interface Builder
     @IBInspectable public var underlineWidth: CGFloat = 40
     @IBInspectable public var underlineHSpacing: CGFloat = 10
     @IBInspectable public var underlineVMargin: CGFloat = 0
@@ -27,11 +28,13 @@ import UIKit
     @IBInspectable public var textColor: UIColor = UIColor.clear 
     @IBInspectable public var placeholderColor: UIColor = UIColor.lightGray
     @IBInspectable public var underlineColor: UIColor = UIColor.darkGray
-    
-    public var keyboardType: UIKeyboardType = .decimalPad
-    public var font: UIFont = UIFont.systemFont(ofSize: 14)
-    
     @IBInspectable public var secureText: Bool = false
+    
+    //MARK: Customizable from code
+    public var keyboardType: UIKeyboardType = UIKeyboardType.alphabet
+    public var font: UIFont = UIFont.systemFont(ofSize: 14)
+    public var allowedCharacterSet: CharacterSet = CharacterSet.alphanumerics
+    
     public var isSecureTextEntry: Bool {
         get {
             return secureText
@@ -41,21 +44,31 @@ import UIKit
         }
     }
     
+    //MARK: Private
     fileprivate var labels: [UILabel] = []
     fileprivate var underlines: [UIView] = []
     
     
-    //MARK: Awake
+    //MARK: Init and awake
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.postInitialize()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override public func awakeFromNib() {
         super.awakeFromNib()
-        updateSubviewsWithXibLoadedProperties()
+        postInitialize()
     }
     
     override public func prepareForInterfaceBuilder() {
-        updateSubviewsWithXibLoadedProperties()
+        postInitialize()
     }
     
-    private func updateSubviewsWithXibLoadedProperties() {
+    private func postInitialize() {
         updateView()
     }
     
@@ -68,7 +81,6 @@ import UIKit
     override public var canBecomeFirstResponder: Bool {
         return true
     }
-    
     
     ///MARK: Private
     fileprivate func updateView() {
@@ -148,7 +160,7 @@ import UIKit
         return character
     }
     
-    fileprivate func createLabel() -> UILabel {
+    private func createLabel() -> UILabel {
         let label = UILabel(frame: CGRect())
         label.font = font
         label.backgroundColor = UIColor.clear
@@ -195,22 +207,36 @@ import UIKit
             becomeFirstResponder()
         }
     }
+    
+    
+    ///MARK: Text processing
+    func canInsertCharacter(_ character: String) -> Bool {
+        let newText = text.map { $0 + character } ?? character
+        let isNewline = character.hasOnlyNewlineSymbols
+        let isCharacterMatchingCharacterSet = character.trimmingCharacters(in: allowedCharacterSet).isEmpty
+        let isLengthWithinLimit = newText.characters.count <= characterLimit
+        return !isNewline && isCharacterMatchingCharacterSet && isLengthWithinLimit
+    }
 }
 
 
 extension PinCodeTextField: UIKeyInput {
     public var hasText: Bool {
-        return text.map{ !$0.isEmpty } ?? false
+        if let text = text {
+            return !text.isEmpty
+        }
+        else {
+            return false
+        }
     }
     
     public func insertText(_ charToInsert: String) {
-        let isNewLine = charToInsert.trimmingCharacters(in: CharacterSet.newlines).isEmpty
-        if isNewLine {
+        
+        if charToInsert.hasOnlyNewlineSymbols {
             resignFirstResponder()
         }
-        else {
+        else if canInsertCharacter(charToInsert) {
             let newText = text.map { $0 + charToInsert } ?? charToInsert
-            guard newText.characters.count <= characterLimit else { return }
             text = newText
             updateView()
             if (newText.characters.count == characterLimit) {
@@ -227,3 +253,8 @@ extension PinCodeTextField: UIKeyInput {
 }
 
 
+fileprivate extension String {
+    var hasOnlyNewlineSymbols: Bool {
+        return trimmingCharacters(in: CharacterSet.newlines).isEmpty
+    }
+}

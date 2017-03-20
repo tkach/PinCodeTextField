@@ -9,44 +9,12 @@
 import UIKit
 
 
-class LongAlgorithm {
-    
-    func performCalculations (completion: @escaping () -> Void) {
-        let time: DispatchTime = .now() + 3
-        DispatchQueue.main.asyncAfter(deadline: time, execute: completion)
-    }
-}
-
-
-class MegaComplexAlgorithmService {
-    
-    let algorithm = LongAlgorithm()
-    
-    func calculate() {
-        let completion = self.calculationsCompletion
-        algorithm.performCalculations(completion: completion)
-    }
-    
-    private func calculationsCompletion() {
-        print("I'm done")
-    }
-    
-    
-    deinit {
-        print("deinit")
-    }
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var s: MegaComplexAlgorithmService?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        s = MegaComplexAlgorithmService()
-        s?.calculate()
-        s = nil
         // Override point for customization after application launch.
         return true
     }
