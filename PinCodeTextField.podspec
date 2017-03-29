@@ -26,12 +26,12 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'ObjC' do |sp|
-    sp.dependency 'Core'
-    sp.source_files  = ["Pod/ObjectiveC/*.swift"]
+    sp.dependency 'PinCodeTextField/Core'
+    sp.source_files  = ["Pod/Objective-C/*.swift"]
   end
 
   s.subspec 'Swift' do |sp|
-    sp.dependency 'Core'
+    sp.dependency 'PinCodeTextField/Core'
     sp.source_files  = ["Pod/Swift/*.swift"]
   end
 
