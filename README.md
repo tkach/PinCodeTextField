@@ -29,6 +29,7 @@ platform :ios, "8.0"
 
 target 'YourTarget' do
 	pod 'PinCodeTextField', :git => "https://github.com/tkach/PinCodeTextField"
+	#for using in Objective-C projects use pod 'PinCodeTextField/ObjC', :git => "https://github.com/tkach/PinCodeTextField"
 end
 
 ```
