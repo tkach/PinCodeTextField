@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 @IBDesignable public class PinCodeTextField: UIView {
-    weak var delegate: PinCodeTextFieldDelegate?
+    public weak var delegate: PinCodeTextFieldDelegate?
     
     //MARK: Customizable from Interface Builder
     @IBInspectable public var underlineWidth: CGFloat = 40
