@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "PinCodeTextField"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "Simple pin code text input based on UIKeyInput"
 
   s.description  = <<-DESC
@@ -17,7 +17,24 @@ Pod::Spec.new do |s|
   s.author       = { "Alex Tkachenko" => "tkach2004@gmail.com" }
   s.platform     = :ios, "8.0"
 
-  s.source       = { :git => "https://github.com/tkach/PinCodeTextField.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/tkach/PinCodeTextField.git", :tag => "#{s.version}" }
 
-  s.source_files  = "Pod", "Pod/**/*.{swift}"
+  
+
+  s.subspec 'Core' do |sp|
+    sp.source_files  = ["Pod/Common/*.{swift}", "Pod/Common/**/*.{swift}" ]
+  end
+
+  s.subspec 'ObjC' do |sp|
+    sp.dependency 'Core'
+    sp.source_files  = ["Pod/ObjectiveC/*.swift"]
+  end
+
+  s.subspec 'Swift' do |sp|
+    sp.dependency 'Core'
+    sp.source_files  = ["Pod/Swift/*.swift"]
+  end
+
+  s.default_subspecs = 'Swift'
+
 end
