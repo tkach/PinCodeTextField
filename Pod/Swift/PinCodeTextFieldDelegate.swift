@@ -13,6 +13,8 @@ public protocol PinCodeTextFieldDelegate: class {
     
     func textFieldDidBeginEditing(_ textField: PinCodeTextField) // became first responder
     
+    func textFieldValueChanged(_ textField: PinCodeTextField) // text value changed
+    
     func textFieldShouldEndEditing(_ textField: PinCodeTextField) -> Bool // return true to allow editing to stop and to resign first responder status at the last character entered event. NO to disallow the editing session to end
     
     func textFieldDidEndEditing(_ textField: PinCodeTextField) // called when pinCodeTextField did end editing
@@ -27,6 +29,10 @@ extension PinCodeTextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: PinCodeTextField) {
+        
+    }
+    
+    func textFieldValueChanged(_ textField: PinCodeTextField) {
         
     }
     

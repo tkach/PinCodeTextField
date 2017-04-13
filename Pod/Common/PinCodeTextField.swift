@@ -236,6 +236,7 @@ extension PinCodeTextField: UIKeyInput {
             let newText = text.map { $0 + charToInsert } ?? charToInsert
             text = newText
             updateView()
+            delegate?.textFieldValueChanged(self)
             if (newText.characters.count == characterLimit) {
                 if (delegate?.textFieldShouldEndEditing(self) ?? true) {
                     let _ = resignFirstResponder()
@@ -248,6 +249,7 @@ extension PinCodeTextField: UIKeyInput {
         guard hasText else { return }
         text?.characters.removeLast()
         updateView()
+        delegate?.textFieldValueChanged(self)
     }
 }
 
