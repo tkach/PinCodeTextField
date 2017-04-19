@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "PinCodeTextField"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "Simple pin code text input based on UIKeyInput"
 
   s.description  = <<-DESC
