@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         pinCodeTextField.delegate = self
-        pinCodeTextField.keyboardType = .numberPad
+        pinCodeTextField.keyboardType = .numberPad        
     }
 
     override public var prefersStatusBarHidden: Bool {

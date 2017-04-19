@@ -19,7 +19,11 @@ import UIKit
     @IBInspectable public var characterLimit: Int = 5
     @IBInspectable public var underlineHeight: CGFloat = 3
     @IBInspectable public var placeholderText: String?
-    @IBInspectable public var text: String?
+    @IBInspectable public var text: String? {
+        didSet {
+            updateView()
+        }
+    }
     
     @IBInspectable public var fontSize: CGFloat = 14 {
         didSet {
@@ -235,7 +239,6 @@ extension PinCodeTextField: UIKeyInput {
         else if canInsertCharacter(charToInsert) {
             let newText = text.map { $0 + charToInsert } ?? charToInsert
             text = newText
-            updateView()
             delegate?.textFieldValueChanged(self)
             if (newText.characters.count == characterLimit) {
                 if (delegate?.textFieldShouldEndEditing(self) ?? true) {
@@ -248,7 +251,6 @@ extension PinCodeTextField: UIKeyInput {
     public func deleteBackward() {
         guard hasText else { return }
         text?.characters.removeLast()
-        updateView()
         delegate?.textFieldValueChanged(self)
     }
 }
