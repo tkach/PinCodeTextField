@@ -33,7 +33,9 @@ import UIKit
     @IBInspectable public var textColor: UIColor = UIColor.clear 
     @IBInspectable public var placeholderColor: UIColor = UIColor.lightGray
     @IBInspectable public var underlineColor: UIColor = UIColor.darkGray
+    @IBInspectable public var updatedUnderlineColor: UIColor = UIColor.clear
     @IBInspectable public var secureText: Bool = false
+    @IBInspectable public var needToUpdateUnderlines: Bool = true
     
     //MARK: Customizable from code
     public var keyboardType: UIKeyboardType = UIKeyboardType.alphabet
@@ -106,6 +108,10 @@ import UIKit
             recreateLabels()
         }
         updateLabels()
+
+        if needToUpdateUnderlines {
+            updateUnderlines()
+        }
         setNeedsLayout()
     }
     
@@ -146,6 +152,18 @@ import UIKit
             label.font = font
             let isplaceholder = isPlaceholder(index)
             label.textColor = labelColor(isPlaceholder: isplaceholder)
+        }
+    }
+
+    private func updateUnderlines() {
+        for label in labels {
+            let index = labels.index(of: label) ?? 0
+            if isPlaceholder(index) {
+                   underlines[index].backgroundColor = underlineColor
+            }
+            else{
+                underlines[index].backgroundColor = updatedUnderlineColor
+            }
         }
     }
     
