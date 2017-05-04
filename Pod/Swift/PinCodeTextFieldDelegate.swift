@@ -23,7 +23,7 @@ public protocol PinCodeTextFieldDelegate: class {
 }
 
 /// default
-extension PinCodeTextFieldDelegate {
+public extension PinCodeTextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: PinCodeTextField) -> Bool {
         return true
     }
