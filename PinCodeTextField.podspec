@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
 
   s.homepage     = "https://github.com/tkach/PinCodeTextField"
 
-  s.license      = { :type => "MIT", :file => 'MIT-LICENSE.txt' }
+  s.license      = { :type => "MIT" }
 
 
   s.author       = { "Alex Tkachenko" => "tkach2004@gmail.com" }
