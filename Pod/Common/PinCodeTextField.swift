@@ -39,6 +39,7 @@ import UIKit
     
     //MARK: Customizable from code
     public var keyboardType: UIKeyboardType = UIKeyboardType.alphabet
+    public var keyboardAppearance: UIKeyboardAppearance = UIKeyboardAppearance.default
     public var font: UIFont = UIFont.systemFont(ofSize: 14)
     public var allowedCharacterSet: CharacterSet = CharacterSet.alphanumerics
     
