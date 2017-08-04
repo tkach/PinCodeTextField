@@ -14,8 +14,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { 
+            self.pinCodeTextField.becomeFirstResponder()
+        }
+        
         pinCodeTextField.delegate = self
-        pinCodeTextField.keyboardType = .numberPad        
+        pinCodeTextField.keyboardType = .numberPad
     }
 
     override public var prefersStatusBarHidden: Bool {
