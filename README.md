@@ -33,6 +33,10 @@ target 'YourTarget' do
 end
 
 ```
+* via Carthage
+```ruby
+github "tkach/PinCodeTextField"
+```
 * manual
 
 ```
