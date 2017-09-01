@@ -30,3 +30,7 @@ Pods
 
 # Cedar helper
 spec_arc_support.rb
+
+# Carthage
+Carthage/*
+!Carthage/PinCodeTextField
