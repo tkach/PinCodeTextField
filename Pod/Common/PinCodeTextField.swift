@@ -208,7 +208,7 @@ import UIKit
         }
         
         labels.forEach {
-            $0.frame = CGRect(x: currentLabelX, y: 0, width: underlineWidth, height: bounds.height)
+            $0.frame = CGRect(x: currentLabelX + (underlineWidth - fontSize) / 2, y: 0, width: fontSize, height: bounds.height)
             currentLabelX += underlineWidth + underlineHSpacing
         }
         
