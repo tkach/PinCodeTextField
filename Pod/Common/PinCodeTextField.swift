@@ -197,8 +197,9 @@ import UIKit
         let totalMarginsWidth = underlineHSpacing * CGFloat(marginsCount)
         let totalUnderlinesWidth = underlineWidth * CGFloat(characterLimit)
         
-        var currentLabelX: CGFloat = bounds.width / 2 - (totalUnderlinesWidth + totalMarginsWidth) / 2
-        var currentUnderlineX = currentLabelX
+        var currentUnderlineX: CGFloat = bounds.width / 2 - (totalUnderlinesWidth + totalMarginsWidth) / 2
+        var currentLabelCenterX = currentUnderlineX + underlineWidth / 2
+        
         let totalLabelHeight = font.ascender + font.descender
         let underlineY = bounds.height / 2 + totalLabelHeight / 2 + underlineVMargin
         
@@ -208,8 +209,11 @@ import UIKit
         }
         
         labels.forEach {
-            $0.frame = CGRect(x: currentLabelX + (underlineWidth - fontSize) / 2, y: 0, width: fontSize, height: bounds.height)
-            currentLabelX += underlineWidth + underlineHSpacing
+            $0.sizeToFit()
+            let labelWidth = $0.bounds.width
+            let labelX = (currentLabelCenterX - labelWidth / 2).rounded(.down)
+            $0.frame = CGRect(x: labelX, y: 0, width: labelWidth, height: bounds.height)
+            currentLabelCenterX += underlineWidth + underlineHSpacing
         }
         
     }
