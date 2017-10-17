@@ -19,7 +19,18 @@ class ViewController: UIViewController {
         }
         
         pinCodeTextField.delegate = self
-        pinCodeTextField.keyboardType = .numberPad
+        pinCodeTextField.keyboardType = .emailAddress
+        
+        let toolbar = UIToolbar()
+        let nextButtonItem = UIBarButtonItem(title: NSLocalizedString("NEXT",
+                                                                      comment: ""),
+                                             style: .done,
+                                             target: self,
+                                             action: #selector(pinCodeNextAction))
+        toolbar.items = [nextButtonItem]
+        toolbar.barStyle = .default
+        toolbar.sizeToFit()
+        pinCodeTextField.inputAccessoryView = toolbar
     }
 
     override public var prefersStatusBarHidden: Bool {
@@ -28,6 +39,10 @@ class ViewController: UIViewController {
     
     override public var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
+    }
+    
+    @objc private func pinCodeNextAction() {
+        print("next tapped")
     }
 }
 

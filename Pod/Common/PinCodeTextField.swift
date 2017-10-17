@@ -44,6 +44,27 @@ import UIKit
     public var font: UIFont = UIFont.systemFont(ofSize: 14)
     public var allowedCharacterSet: CharacterSet = CharacterSet.alphanumerics
     
+    private var _inputView: UIView?
+    public override var inputView: UIView? {
+        get {
+            return _inputView
+        }
+        set {
+            _inputView = newValue
+        }
+    }
+    
+    // UIResponder
+    private var _inputAccessoryView: UIView?
+    @IBOutlet public override var inputAccessoryView: UIView? {
+        get {
+            return _inputAccessoryView
+        }
+        set {
+            _inputAccessoryView = newValue
+        }
+    }
+    
     public var isSecureTextEntry: Bool {
         get {
             return secureText
