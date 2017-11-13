@@ -1,6 +1,9 @@
 PinCodeTextField
 ===================
 
+
+[![Build Status](https://travis-ci.org/tkach/PinCodeTextField.svg?branch=master)](https://travis-ci.org/tkach/PinCodeTextField)
+
 Simple pin code text input with underlined space for characters.
 
 Based on UIView + UIKeyInput protocol
