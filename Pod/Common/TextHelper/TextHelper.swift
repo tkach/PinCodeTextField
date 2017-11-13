@@ -20,16 +20,16 @@ class TextHelper {
     }
     
     func character(atIndex i: Int) -> Character? {
-        let inputTextCount = text?.characters.count ?? 0
-        let placeholderTextLength = placeholderText?.characters.count ?? 0
+        let inputTextCount = text?.count ?? 0
+        let placeholderTextLength = placeholderText?.count ?? 0
         let character: Character?
         if i < inputTextCount {
             let string = text ?? ""
-            character = isSecureTextEntry ? "•" : string[string.characters.index(string.startIndex, offsetBy: i)]
+            character = isSecureTextEntry ? "•" : string[string.index(string.startIndex, offsetBy: i)]
         }
         else if i < placeholderTextLength {
             let string = placeholderText ?? ""
-            character = string[string.characters.index(string.startIndex, offsetBy: i)]
+            character = string[string.index(string.startIndex, offsetBy: i)]
         }
         else {
             character = nil
