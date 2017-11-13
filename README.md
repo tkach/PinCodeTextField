@@ -28,7 +28,7 @@ use_frameworks!
 platform :ios, "8.0"
 
 target 'YourTarget' do
-	pod 'PinCodeTextField', :git => "https://github.com/tkach/PinCodeTextField"
+	pod 'PinCodeTextField'
 end
 
 ```
