@@ -1,0 +1,4 @@
+language: swift
+xcode_project: PinCodeTextField.xcodeproj
+xcode_scheme: PinCodeTextField
+osx_image: xcode9.1
