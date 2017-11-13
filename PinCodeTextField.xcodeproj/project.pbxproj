@@ -17,18 +17,7 @@
 		B5EFAB6D1E7A7C6D00AE87FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5EFAB651E7A7C6D00AE87FA /* LaunchScreen.storyboard */; };
 		B5EFAB6E1E7A7C6D00AE87FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5EFAB671E7A7C6D00AE87FA /* Main.storyboard */; };
 		B5EFAB701E7A7C6D00AE87FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EFAB6A1E7A7C6D00AE87FA /* ViewController.swift */; };
-		B5F0842B1E7996A70058D4A2 /* PinCodeTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0842A1E7996A70058D4A2 /* PinCodeTextFieldTests.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		B5F084271E7996A70058D4A2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B5F0840A1E7996A70058D4A2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B5F084111E7996A70058D4A2;
-			remoteInfo = PinCodeTextField;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B5D01D411E8BAE8C0006AA3D /* PinCodeTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeTextFieldDelegate.swift; sourceTree = "<group>"; };
@@ -43,9 +32,6 @@
 		B5EFAB691E7A7C6D00AE87FA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5EFAB6A1E7A7C6D00AE87FA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B5F084121E7996A70058D4A2 /* PinCodeTextField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinCodeTextField.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5F084261E7996A70058D4A2 /* PinCodeTextFieldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinCodeTextFieldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5F0842A1E7996A70058D4A2 /* PinCodeTextFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeTextFieldTests.swift; sourceTree = "<group>"; };
-		B5F0842C1E7996A70058D4A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,34 +42,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B5F084231E7996A70058D4A2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B5D01D401E8BAE8C0006AA3D /* Swift */ = {
-			isa = PBXGroup;
-			children = (
-				B5D01D411E8BAE8C0006AA3D /* PinCodeTextFieldDelegate.swift */,
-			);
-			path = Swift;
-			sourceTree = "<group>";
-		};
-		B5D01D431E8BAF3A0006AA3D /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				B5D01D441E8BAF3A0006AA3D /* Extensions */,
-				B5D01D471E8BAF3A0006AA3D /* PinCodeTextField.swift */,
-				B5D01D481E8BAF3A0006AA3D /* TextHelper */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		B5D01D441E8BAF3A0006AA3D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,8 +65,10 @@
 		B5EFAB5F1E7A7C5400AE87FA /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				B5D01D431E8BAF3A0006AA3D /* Common */,
-				B5D01D401E8BAE8C0006AA3D /* Swift */,
+				B5D01D441E8BAF3A0006AA3D /* Extensions */,
+				B5D01D481E8BAF3A0006AA3D /* TextHelper */,
+				B5D01D411E8BAE8C0006AA3D /* PinCodeTextFieldDelegate.swift */,
+				B5D01D471E8BAF3A0006AA3D /* PinCodeTextField.swift */,
 			);
 			path = Pod;
 			sourceTree = "<group>";
@@ -128,7 +91,6 @@
 			children = (
 				B5EFAB621E7A7C6D00AE87FA /* PinCodeTextFieldExample */,
 				B5EFAB5F1E7A7C5400AE87FA /* Pod */,
-				B5F084291E7996A70058D4A2 /* PinCodeTextFieldTests */,
 				B5F084131E7996A70058D4A2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -137,18 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				B5F084121E7996A70058D4A2 /* PinCodeTextField.app */,
-				B5F084261E7996A70058D4A2 /* PinCodeTextFieldTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B5F084291E7996A70058D4A2 /* PinCodeTextFieldTests */ = {
-			isa = PBXGroup;
-			children = (
-				B5F0842A1E7996A70058D4A2 /* PinCodeTextFieldTests.swift */,
-				B5F0842C1E7996A70058D4A2 /* Info.plist */,
-			);
-			path = PinCodeTextFieldTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,24 +123,6 @@
 			productReference = B5F084121E7996A70058D4A2 /* PinCodeTextField.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B5F084251E7996A70058D4A2 /* PinCodeTextFieldTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B5F084321E7996A70058D4A2 /* Build configuration list for PBXNativeTarget "PinCodeTextFieldTests" */;
-			buildPhases = (
-				B5F084221E7996A70058D4A2 /* Sources */,
-				B5F084231E7996A70058D4A2 /* Frameworks */,
-				B5F084241E7996A70058D4A2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B5F084281E7996A70058D4A2 /* PBXTargetDependency */,
-			);
-			name = PinCodeTextFieldTests;
-			productName = PinCodeTextFieldTests;
-			productReference = B5F084261E7996A70058D4A2 /* PinCodeTextFieldTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -203,12 +137,6 @@
 						CreatedOnToolsVersion = 8.2;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
-					};
-					B5F084251E7996A70058D4A2 = {
-						CreatedOnToolsVersion = 8.2;
-						LastSwiftMigration = 0910;
-						ProvisioningStyle = Automatic;
-						TestTargetID = B5F084111E7996A70058D4A2;
 					};
 				};
 			};
@@ -226,7 +154,6 @@
 			projectRoot = "";
 			targets = (
 				B5F084111E7996A70058D4A2 /* PinCodeTextField */,
-				B5F084251E7996A70058D4A2 /* PinCodeTextFieldTests */,
 			);
 		};
 /* End PBXProject section */
@@ -239,13 +166,6 @@
 				B5EFAB6C1E7A7C6D00AE87FA /* Assets.xcassets in Resources */,
 				B5EFAB6E1E7A7C6D00AE87FA /* Main.storyboard in Resources */,
 				B5EFAB6D1E7A7C6D00AE87FA /* LaunchScreen.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B5F084241E7996A70058D4A2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,23 +186,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B5F084221E7996A70058D4A2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B5F0842B1E7996A70058D4A2 /* PinCodeTextFieldTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B5F084281E7996A70058D4A2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B5F084111E7996A70058D4A2 /* PinCodeTextField */;
-			targetProxy = B5F084271E7996A70058D4A2 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B5EFAB651E7A7C6D00AE87FA /* LaunchScreen.storyboard */ = {
@@ -435,36 +339,6 @@
 			};
 			name = Release;
 		};
-		B5F084331E7996A70058D4A2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PinCodeTextFieldTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = organization.PinCodeTextFieldTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PinCodeTextField.app/PinCodeTextField";
-			};
-			name = Debug;
-		};
-		B5F084341E7996A70058D4A2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PinCodeTextFieldTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = organization.PinCodeTextFieldTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PinCodeTextField.app/PinCodeTextField";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -482,15 +356,6 @@
 			buildConfigurations = (
 				B5F084301E7996A70058D4A2 /* Debug */,
 				B5F084311E7996A70058D4A2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B5F084321E7996A70058D4A2 /* Build configuration list for PBXNativeTarget "PinCodeTextFieldTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B5F084331E7996A70058D4A2 /* Debug */,
-				B5F084341E7996A70058D4A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
