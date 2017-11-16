@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED8075641FBD5DCF00135635 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED80755D1FBD5DCF00135635 /* IntExtension.swift */; };
+		ED8075651FBD5DCF00135635 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED80755E1FBD5DCF00135635 /* StringExtension.swift */; };
+		ED8075661FBD5DCF00135635 /* PinCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED80755F1FBD5DCF00135635 /* PinCodeTextField.swift */; };
+		ED8075671FBD5DCF00135635 /* PinCodeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8075611FBD5DCF00135635 /* PinCodeTextFieldDelegate.swift */; };
+		ED8075681FBD5DCF00135635 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8075631FBD5DCF00135635 /* TextHelper.swift */; };
 		EDE7F2BA1F5969D100C32606 /* PinCodeTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = EDE7F2B81F5969D100C32606 /* PinCodeTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EDE7F2C71F5969F300C32606 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE7F2C21F5969F300C32606 /* IntExtension.swift */; };
-		EDE7F2C81F5969F300C32606 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE7F2C31F5969F300C32606 /* StringExtension.swift */; };
-		EDE7F2C91F5969F300C32606 /* PinCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE7F2C41F5969F300C32606 /* PinCodeTextField.swift */; };
-		EDE7F2CA1F5969F300C32606 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE7F2C61F5969F300C32606 /* TextHelper.swift */; };
-		EDE7F2CD1F5969FA00C32606 /* PinCodeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE7F2CC1F5969FA00C32606 /* PinCodeTextFieldDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED80755D1FBD5DCF00135635 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		ED80755E1FBD5DCF00135635 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		ED80755F1FBD5DCF00135635 /* PinCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinCodeTextField.swift; path = ../../../Pod/PinCodeTextField.swift; sourceTree = "<group>"; };
+		ED8075611FBD5DCF00135635 /* PinCodeTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinCodeTextFieldDelegate.swift; path = ../../../Pod/PinCodeTextFieldDelegate.swift; sourceTree = "<group>"; };
+		ED8075631FBD5DCF00135635 /* TextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
 		EDE7F2B51F5969D100C32606 /* PinCodeTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinCodeTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE7F2B81F5969D100C32606 /* PinCodeTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PinCodeTextField.h; sourceTree = "<group>"; };
 		EDE7F2B91F5969D100C32606 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EDE7F2C21F5969F300C32606 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
-		EDE7F2C31F5969F300C32606 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		EDE7F2C41F5969F300C32606 /* PinCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeTextField.swift; sourceTree = "<group>"; };
-		EDE7F2C61F5969F300C32606 /* TextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
-		EDE7F2CC1F5969FA00C32606 /* PinCodeTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeTextFieldDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +37,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED80755C1FBD5DCF00135635 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ED80755D1FBD5DCF00135635 /* IntExtension.swift */,
+				ED80755E1FBD5DCF00135635 /* StringExtension.swift */,
+			);
+			name = Extensions;
+			path = ../../../Pod/Extensions;
+			sourceTree = "<group>";
+		};
+		ED8075601FBD5DCF00135635 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Common;
+			path = ../../../Pod/Common;
+			sourceTree = "<group>";
+		};
+		ED8075621FBD5DCF00135635 /* TextHelper */ = {
+			isa = PBXGroup;
+			children = (
+				ED8075631FBD5DCF00135635 /* TextHelper.swift */,
+			);
+			name = TextHelper;
+			path = ../../../Pod/TextHelper;
+			sourceTree = "<group>";
+		};
 		EDE7F2AB1F5969D100C32606 = {
 			isa = PBXGroup;
 			children = (
@@ -57,48 +84,14 @@
 			isa = PBXGroup;
 			children = (
 				EDE7F2B81F5969D100C32606 /* PinCodeTextField.h */,
-				EDE7F2C01F5969F300C32606 /* Common */,
-				EDE7F2CB1F5969FA00C32606 /* Swift */,
+				ED8075601FBD5DCF00135635 /* Common */,
+				ED80755C1FBD5DCF00135635 /* Extensions */,
+				ED80755F1FBD5DCF00135635 /* PinCodeTextField.swift */,
+				ED8075611FBD5DCF00135635 /* PinCodeTextFieldDelegate.swift */,
+				ED8075621FBD5DCF00135635 /* TextHelper */,
 				EDE7F2B91F5969D100C32606 /* Info.plist */,
 			);
 			path = PinCodeTextField;
-			sourceTree = "<group>";
-		};
-		EDE7F2C01F5969F300C32606 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				EDE7F2C11F5969F300C32606 /* Extensions */,
-				EDE7F2C41F5969F300C32606 /* PinCodeTextField.swift */,
-				EDE7F2C51F5969F300C32606 /* TextHelper */,
-			);
-			name = Common;
-			path = ../../../Pod/Common;
-			sourceTree = "<group>";
-		};
-		EDE7F2C11F5969F300C32606 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				EDE7F2C21F5969F300C32606 /* IntExtension.swift */,
-				EDE7F2C31F5969F300C32606 /* StringExtension.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		EDE7F2C51F5969F300C32606 /* TextHelper */ = {
-			isa = PBXGroup;
-			children = (
-				EDE7F2C61F5969F300C32606 /* TextHelper.swift */,
-			);
-			path = TextHelper;
-			sourceTree = "<group>";
-		};
-		EDE7F2CB1F5969FA00C32606 /* Swift */ = {
-			isa = PBXGroup;
-			children = (
-				EDE7F2CC1F5969FA00C32606 /* PinCodeTextFieldDelegate.swift */,
-			);
-			name = Swift;
-			path = ../../../Pod/Swift;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +137,7 @@
 				TargetAttributes = {
 					EDE7F2B41F5969D100C32606 = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -180,11 +174,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDE7F2CD1F5969FA00C32606 /* PinCodeTextFieldDelegate.swift in Sources */,
-				EDE7F2CA1F5969F300C32606 /* TextHelper.swift in Sources */,
-				EDE7F2C81F5969F300C32606 /* StringExtension.swift in Sources */,
-				EDE7F2C91F5969F300C32606 /* PinCodeTextField.swift in Sources */,
-				EDE7F2C71F5969F300C32606 /* IntExtension.swift in Sources */,
+				ED8075651FBD5DCF00135635 /* StringExtension.swift in Sources */,
+				ED8075661FBD5DCF00135635 /* PinCodeTextField.swift in Sources */,
+				ED8075681FBD5DCF00135635 /* TextHelper.swift in Sources */,
+				ED8075641FBD5DCF00135635 /* IntExtension.swift in Sources */,
+				ED8075671FBD5DCF00135635 /* PinCodeTextFieldDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +289,7 @@
 		EDE7F2BE1F5969D100C32606 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -307,6 +302,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dena.PinCodeTextField;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -314,6 +310,7 @@
 		EDE7F2BF1F5969D100C32606 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -349,6 +346,7 @@
 				EDE7F2BF1F5969D100C32606 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
