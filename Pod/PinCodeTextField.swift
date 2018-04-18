@@ -36,6 +36,8 @@ import UIKit
     @IBInspectable public var updatedUnderlineColor: UIColor = UIColor.clear
     @IBInspectable public var secureText: Bool = false
     @IBInspectable public var needToUpdateUnderlines: Bool = true
+    @IBInspectable public var characterBackgroundColor: UIColor = UIColor.clear
+    @IBInspectable public var characterBackgroundCornerRadius: CGFloat = 0
     
     //MARK: Customizable from code
     public var keyboardType: UIKeyboardType = UIKeyboardType.alphabet
@@ -75,8 +77,9 @@ import UIKit
     }
     
     //MARK: Private
-    fileprivate var labels: [UILabel] = []
-    fileprivate var underlines: [UIView] = []
+    private var labels: [UILabel] = []
+    private var underlines: [UIView] = []
+    private var backgrounds: [UIView] = []
     
     
     //MARK: Init and awake
@@ -123,11 +126,14 @@ import UIKit
     }
     
     //MARK: Private
-    fileprivate func updateView() {
-        if (needToRecreateUnderlines()) {
+    private func updateView() {
+        if needToRecreateBackgrounds() {
+            recreateBackgrounds()
+        }
+        if needToRecreateUnderlines() {
             recreateUnderlines()
         }
-        if (needToRecreateLabels()) {
+        if needToRecreateLabels() {
             recreateLabels()
         }
         updateLabels()
@@ -135,6 +141,7 @@ import UIKit
         if needToUpdateUnderlines {
             updateUnderlines()
         }
+        updateBackgrounds()
         setNeedsLayout()
     }
     
@@ -144,6 +151,10 @@ import UIKit
     
     private func needToRecreateLabels() -> Bool {
         return characterLimit != labels.count
+    }
+    
+    private func needToRecreateBackgrounds() -> Bool {
+        return characterLimit != backgrounds.count
     }
     
     private func recreateUnderlines() {
@@ -163,6 +174,16 @@ import UIKit
             let label = createLabel()
             labels.append(label)
             addSubview(label)
+        }
+    }
+    
+    private func recreateBackgrounds() {
+        backgrounds.forEach{ $0.removeFromSuperview() }
+        backgrounds.removeAll()
+        characterLimit.times {
+            let background = createBackground()
+            backgrounds.append(background)
+            addSubview(background)
         }
     }
     
@@ -190,6 +211,13 @@ import UIKit
         }
     }
     
+    private func updateBackgrounds() {
+        for background in backgrounds {
+            background.backgroundColor = characterBackgroundColor
+            background.layer.cornerRadius = characterBackgroundCornerRadius
+        }
+    }
+    
     private func labelColor(isPlaceholder placeholder: Bool) -> UIColor {
         return placeholder ? placeholderColor : textColor
     }
@@ -213,6 +241,14 @@ import UIKit
         return underline
     }
     
+    private func createBackground() -> UIView {
+        let background = UIView()
+        background.backgroundColor = characterBackgroundColor
+        background.layer.cornerRadius = characterBackgroundCornerRadius
+        background.clipsToBounds = true
+        return background
+    }
+    
     private func layoutCharactersAndPlaceholders() {
         let marginsCount = characterLimit - 1
         let totalMarginsWidth = underlineHSpacing * CGFloat(marginsCount)
@@ -224,8 +260,11 @@ import UIKit
         let totalLabelHeight = font.ascender + font.descender
         let underlineY = bounds.height / 2 + totalLabelHeight / 2 + underlineVMargin
         
-        underlines.forEach{
-            $0.frame = CGRect(x: currentUnderlineX, y: underlineY, width: underlineWidth, height: underlineHeight)
+        for i in 0..<underlines.count {
+            let underline = underlines[i]
+            let background = backgrounds[i]
+            underline.frame = CGRect(x: currentUnderlineX, y: underlineY, width: underlineWidth, height: underlineHeight)
+            background.frame = CGRect(x: currentUnderlineX, y: 0, width: underlineWidth, height: bounds.height)
             currentUnderlineX += underlineWidth + underlineHSpacing
         }
         
