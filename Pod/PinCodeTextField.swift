@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@IBDesignable public class PinCodeTextField: UIView {
+@IBDesignable open class PinCodeTextField: UIView {
     public weak var delegate: PinCodeTextFieldDelegate?
     
     //MARK: Customizable from Interface Builder
@@ -47,7 +47,7 @@ import UIKit
     public var allowedCharacterSet: CharacterSet = CharacterSet.alphanumerics
     
     private var _inputView: UIView?
-    public override var inputView: UIView? {
+    open override var inputView: UIView? {
         get {
             return _inputView
         }
@@ -58,7 +58,7 @@ import UIKit
     
     // UIResponder
     private var _inputAccessoryView: UIView?
-    @IBOutlet public override var inputAccessoryView: UIView? {
+    @IBOutlet open override var inputAccessoryView: UIView? {
         get {
             return _inputAccessoryView
         }
@@ -92,12 +92,12 @@ import UIKit
         super.init(coder: aDecoder)
     }
     
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
         postInitialize()
     }
     
-    override public func prepareForInterfaceBuilder() {
+    override open func prepareForInterfaceBuilder() {
         postInitialize()
     }
     
@@ -106,21 +106,21 @@ import UIKit
     }
     
     //MARK: Overrides
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         layoutCharactersAndPlaceholders()
         super.layoutSubviews()
     }
     
-    override public var canBecomeFirstResponder: Bool {
+    override open var canBecomeFirstResponder: Bool {
         return true
     }
     
-    @discardableResult override public func becomeFirstResponder() -> Bool {
+    @discardableResult override open func becomeFirstResponder() -> Bool {
         delegate?.textFieldDidBeginEditing(self)
         return super.becomeFirstResponder()
     }
     
-    @discardableResult override public func resignFirstResponder() -> Bool {
+    @discardableResult override open func resignFirstResponder() -> Bool {
         delegate?.textFieldDidEndEditing(self)
         return super.resignFirstResponder()
     }
@@ -279,7 +279,7 @@ import UIKit
     }
     
     //MARK: Touches
-    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {
             return
         }
