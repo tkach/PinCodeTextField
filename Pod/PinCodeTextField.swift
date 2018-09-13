@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+public enum PinCodeAlignment {
+  case left
+  case center
+  case right
+}
+
 @IBDesignable open class PinCodeTextField: UIView {
     public weak var delegate: PinCodeTextFieldDelegate?
     
@@ -45,6 +51,7 @@ import UIKit
     public var autocorrectionType: UITextAutocorrectionType = UITextAutocorrectionType.no
     public var font: UIFont = UIFont.systemFont(ofSize: 14)
     public var allowedCharacterSet: CharacterSet = CharacterSet.alphanumerics
+    public var alignment = PinCodeAlignment.center
     
     private var _inputView: UIView?
     open override var inputView: UIView? {
@@ -253,8 +260,18 @@ import UIKit
         let marginsCount = characterLimit - 1
         let totalMarginsWidth = underlineHSpacing * CGFloat(marginsCount)
         let totalUnderlinesWidth = underlineWidth * CGFloat(characterLimit)
-        
-        var currentUnderlineX: CGFloat = bounds.width / 2 - (totalUnderlinesWidth + totalMarginsWidth) / 2
+
+        var currentUnderlineX: CGFloat
+
+        switch alignment {
+        case .left:
+          currentUnderlineX = 0
+        case .center:
+          currentUnderlineX = bounds.width / 2 - (totalUnderlinesWidth + totalMarginsWidth) / 2
+        case .right:
+          currentUnderlineX = bounds.width - (totalUnderlinesWidth + totalMarginsWidth)
+        }
+
         var currentLabelCenterX = currentUnderlineX + underlineWidth / 2
         
         let totalLabelHeight = font.ascender + font.descender
