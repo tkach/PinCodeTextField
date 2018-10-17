@@ -17,8 +17,10 @@ import UIKit
     @IBInspectable public var underlineHSpacing: CGFloat = 10
     @IBInspectable public var underlineVMargin: CGFloat = 0
     @IBInspectable public var characterLimit: Int = 4 {
-        didSet {
-            updateView()
+        willSet {
+            if characterLimit != newValue {
+                updateView()
+            }
         }
     }
     @IBInspectable public var underlineHeight: CGFloat = 3
