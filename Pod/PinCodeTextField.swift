@@ -38,6 +38,7 @@ import UIKit
     @IBInspectable public var needToUpdateUnderlines: Bool = true
     @IBInspectable public var characterBackgroundColor: UIColor = UIColor.clear
     @IBInspectable public var characterBackgroundCornerRadius: CGFloat = 0
+    @IBInspectable public var highlightInputUnderline: Bool = false
     
     //MARK: Customizable from code
     public var keyboardType: UIKeyboardType = UIKeyboardType.alphabet
@@ -45,6 +46,7 @@ import UIKit
     public var autocorrectionType: UITextAutocorrectionType = UITextAutocorrectionType.no
     public var font: UIFont = UIFont.systemFont(ofSize: 14)
     public var allowedCharacterSet: CharacterSet = CharacterSet.alphanumerics
+    public var textContentType: UITextContentType! = nil
     
     private var _inputView: UIView?
     open override var inputView: UIView? {
@@ -202,7 +204,7 @@ import UIKit
     private func updateUnderlines() {
         for label in labels {
             let index = labels.index(of: label) ?? 0
-            if isPlaceholder(index) {
+            if (!highlightInputUnderline || !isInput(index)) && isPlaceholder(index) {
                    underlines[index].backgroundColor = underlineColor
             }
             else{
@@ -225,6 +227,11 @@ import UIKit
     private func isPlaceholder(_ i: Int) -> Bool {
         let inputTextCount = text?.count ?? 0
         return i >= inputTextCount
+    }
+    
+    private func isInput(_ i: Int) -> Bool {
+        let inputTextCount = text?.count ?? 0
+        return i == inputTextCount
     }
     
     private func createLabel() -> UILabel {
