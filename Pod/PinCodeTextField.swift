@@ -16,7 +16,13 @@ import UIKit
     @IBInspectable public var underlineWidth: CGFloat = 40
     @IBInspectable public var underlineHSpacing: CGFloat = 10
     @IBInspectable public var underlineVMargin: CGFloat = 0
-    @IBInspectable public var characterLimit: Int = 5
+    @IBInspectable public var characterLimit: Int = 4 {
+        willSet {
+            if characterLimit != newValue {
+                updateView()
+            }
+        }
+    }
     @IBInspectable public var underlineHeight: CGFloat = 3
     @IBInspectable public var placeholderText: String?
     @IBInspectable public var text: String? {
@@ -85,7 +91,7 @@ import UIKit
     
     
     //MARK: Init and awake
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         postInitialize()
     }
