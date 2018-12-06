@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@IBDesignable open class PinCodeTextField: UIView {
+@IBDesignable open class PinCodeTextField: UIView, UITextInputTraits {
     public weak var delegate: PinCodeTextFieldDelegate?
     
     //MARK: Customizable from Interface Builder
