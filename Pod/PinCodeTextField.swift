@@ -52,7 +52,14 @@ import UIKit
     public var autocorrectionType: UITextAutocorrectionType = UITextAutocorrectionType.no
     public var font: UIFont = UIFont.systemFont(ofSize: 14)
     public var allowedCharacterSet: CharacterSet = CharacterSet.alphanumerics
-    public var textContentType: UITextContentType! = nil
+    
+    public lazy var textContentType: UITextContentType! = {
+        guard #available(iOS 12.0, *) else {
+            return nil
+        }
+        
+        return UITextContentType.oneTimeCode
+    }()
     
     private var _inputView: UIView?
     open override var inputView: UIView? {
