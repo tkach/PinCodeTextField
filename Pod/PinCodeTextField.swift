@@ -9,7 +9,93 @@
 import Foundation
 import UIKit
 
-@IBDesignable open class PinCodeTextField: UIView, UITextInputTraits {
+@IBDesignable open class PinCodeTextField: UIView, UITextInput {
+    public func replace(_ range: UITextRange, withText text: String) {
+    }
+    
+    public var selectedTextRange: UITextRange? = nil
+    
+    public var markedTextRange: UITextRange? = nil
+    
+    public var markedTextStyle: [AnyHashable : Any]? = nil
+    
+    public func setMarkedText(_ markedText: String?, selectedRange: NSRange) {
+    }
+    
+    public func unmarkText() {
+    }
+    
+    public var beginningOfDocument: UITextPosition = UITextPosition()
+    
+    public var endOfDocument: UITextPosition = UITextPosition()
+    
+    public func textRange(from fromPosition: UITextPosition, to toPosition: UITextPosition) -> UITextRange? {
+        return nil
+    }
+    
+    public func position(from position: UITextPosition, offset: Int) -> UITextPosition? {
+        return nil
+    }
+    
+    public func position(from position: UITextPosition, in direction: UITextLayoutDirection, offset: Int) -> UITextPosition? {
+        return nil
+    }
+    
+    public func compare(_ position: UITextPosition, to other: UITextPosition) -> ComparisonResult {
+        return ComparisonResult.orderedSame
+    }
+    
+    public func offset(from: UITextPosition, to toPosition: UITextPosition) -> Int {
+        return 0
+    }
+    
+    public var inputDelegate: UITextInputDelegate?
+    
+    public var tokenizer: UITextInputTokenizer = UITextInputStringTokenizer()
+    
+    public func position(within range: UITextRange, farthestIn direction: UITextLayoutDirection) -> UITextPosition? {
+        return nil
+    }
+    
+    public func characterRange(byExtending position: UITextPosition, in direction: UITextLayoutDirection) -> UITextRange? {
+        return nil
+    }
+    
+    public func baseWritingDirection(for position: UITextPosition, in direction: UITextStorageDirection) -> UITextWritingDirection {
+        return UITextWritingDirection.natural
+    }
+    
+    public func setBaseWritingDirection(_ writingDirection: UITextWritingDirection, for range: UITextRange) {
+    }
+    
+    public func firstRect(for range: UITextRange) -> CGRect {
+        return CGRect.zero
+    }
+    
+    public func caretRect(for position: UITextPosition) -> CGRect {
+        return CGRect.zero
+    }
+    
+    public func selectionRects(for range: UITextRange) -> [Any] {
+        return []
+    }
+    
+    public func closestPosition(to point: CGPoint) -> UITextPosition? {
+        return nil
+    }
+    
+    public func closestPosition(to point: CGPoint, within range: UITextRange) -> UITextPosition? {
+        return nil
+    }
+    
+    public func characterRange(at point: CGPoint) -> UITextRange? {
+        return nil
+    }
+    
+    public func text(in range: UITextRange) -> String? {
+        return nil
+    }
+    
     public weak var delegate: PinCodeTextFieldDelegate?
     
     //MARK: Customizable from Interface Builder
