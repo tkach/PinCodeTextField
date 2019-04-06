@@ -198,7 +198,7 @@ import UIKit
     private func updateLabels() {
         let textHelper = TextHelper(text: text, placeholder: placeholderText, isSecure: isSecureTextEntry)
         for label in labels {
-            let index = labels.index(of: label) ?? 0
+            let index = labels.firstIndex(of: label) ?? 0
             let currentCharacter = textHelper.character(atIndex: index)
             label.text = currentCharacter.map { String($0) }
             label.font = font
@@ -209,7 +209,7 @@ import UIKit
 
     private func updateUnderlines() {
         for label in labels {
-            let index = labels.index(of: label) ?? 0
+            let index = labels.firstIndex(of: label) ?? 0
             if (!highlightInputUnderline || !isInput(index)) && isPlaceholder(index) {
                    underlines[index].backgroundColor = underlineColor
             }
