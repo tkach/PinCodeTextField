@@ -20,8 +20,8 @@ class TextHelper {
     }
     
     func character(atIndex i: Int) -> Character? {
-        let inputTextCount = text?.count ?? 0
-        let placeholderTextLength = placeholderText?.count ?? 0
+        let inputTextCount = text?.length ?? 0
+        let placeholderTextLength = placeholderText?.length ?? 0
         let character: Character?
         if i < inputTextCount {
             let string = text ?? ""

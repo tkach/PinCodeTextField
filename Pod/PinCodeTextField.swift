@@ -231,7 +231,7 @@ import UIKit
     }
     
     private func isPlaceholder(_ i: Int) -> Bool {
-        let inputTextCount = text?.count ?? 0
+        let inputTextCount = text?.length ?? 0
         return i >= inputTextCount
     }
     
@@ -310,7 +310,7 @@ import UIKit
         let newText = text.map { $0 + character } ?? character
         let isNewline = character.hasOnlyNewlineSymbols
         let isCharacterMatchingCharacterSet = character.trimmingCharacters(in: allowedCharacterSet).isEmpty
-        let isLengthWithinLimit = newText.count <= characterLimit
+        let isLengthWithinLimit = newText.length <= characterLimit
         return !isNewline && isCharacterMatchingCharacterSet && isLengthWithinLimit
     }
 }
@@ -337,7 +337,7 @@ extension PinCodeTextField: UIKeyInput {
             let newText = text.map { $0 + charToInsert } ?? charToInsert
             text = newText
             delegate?.textFieldValueChanged(self)
-            if (newText.count == characterLimit) {
+            if (newText.length == characterLimit) {
                 if (delegate?.textFieldShouldEndEditing(self) ?? true) {
                     let _ = resignFirstResponder()
                 }
@@ -347,7 +347,7 @@ extension PinCodeTextField: UIKeyInput {
     
     public func deleteBackward() {
         guard hasText else { return }
-        text?.removeLast()
+        text?.removeLastCharacter()
         delegate?.textFieldValueChanged(self)
     }
 }
