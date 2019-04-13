@@ -197,10 +197,9 @@
 			};
 			buildConfigurationList = B5F0840D1E7996A70058D4A2 /* Build configuration list for PBXProject "PinCodeTextField" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
