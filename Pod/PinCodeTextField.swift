@@ -41,6 +41,7 @@ import UIKit
     @IBInspectable public var underlineColor: UIColor = UIColor.darkGray
     @IBInspectable public var updatedUnderlineColor: UIColor = UIColor.clear
     @IBInspectable public var secureText: Bool = false
+	@IBInspectable public var secureCharacter: String = "•"
     @IBInspectable public var needToUpdateUnderlines: Bool = true
     @IBInspectable public var characterBackgroundColor: UIColor = UIColor.clear
     @IBInspectable public var characterBackgroundCornerRadius: CGFloat = 0
@@ -196,7 +197,7 @@ import UIKit
     }
     
     private func updateLabels() {
-        let textHelper = TextHelper(text: text, placeholder: placeholderText, isSecure: isSecureTextEntry)
+		let textHelper = TextHelper(text: text, placeholder: placeholderText, isSecure: isSecureTextEntry, charSubstitute: Character(secureCharacter))
         for label in labels {
             let index = labels.firstIndex(of: label) ?? 0
             let currentCharacter = textHelper.character(atIndex: index)
