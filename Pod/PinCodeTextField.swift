@@ -45,7 +45,8 @@ import UIKit
     @IBInspectable public var characterBackgroundColor: UIColor = UIColor.clear
     @IBInspectable public var characterBackgroundCornerRadius: CGFloat = 0
     @IBInspectable public var highlightInputUnderline: Bool = false
-    
+    @IBInspectable public var showBorderInsteadOfUnderline: Bool = false
+
     //MARK: Customizable from code
     public var keyboardType: UIKeyboardType = UIKeyboardType.alphabet
     public var keyboardAppearance: UIKeyboardAppearance = UIKeyboardAppearance.default
@@ -220,9 +221,13 @@ import UIKit
     }
     
     private func updateBackgrounds() {
-        for background in backgrounds {
+        for (index, background) in backgrounds.enumerated() {
             background.backgroundColor = characterBackgroundColor
             background.layer.cornerRadius = characterBackgroundCornerRadius
+            if showBorderInsteadOfUnderline {
+                background.layer.borderWidth = underlineHeight
+                background.layer.borderColor = underlineColorForIndex(index).cgColor
+            }
         }
     }
     
@@ -274,9 +279,12 @@ import UIKit
         let underlineY = bounds.height / 2 + totalLabelHeight / 2 + underlineVMargin
         
         for i in 0..<underlines.count {
-            let underline = underlines[i]
+            if !showBorderInsteadOfUnderline {
+                let underline = underlines[i]
+                underline.frame = CGRect(x: currentUnderlineX, y: underlineY, width: underlineWidth, height: underlineHeight)
+            }
+
             let background = backgrounds[i]
-            underline.frame = CGRect(x: currentUnderlineX, y: underlineY, width: underlineWidth, height: underlineHeight)
             background.frame = CGRect(x: currentUnderlineX, y: 0, width: underlineWidth, height: bounds.height)
             currentUnderlineX += underlineWidth + underlineHSpacing
         }
