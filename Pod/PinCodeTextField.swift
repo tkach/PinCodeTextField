@@ -207,15 +207,15 @@ import UIKit
         }
     }
 
+    private func underlineColorForIndex(_ index: Int) -> UIColor {
+        (!highlightInputUnderline || !isInput(index)) && isPlaceholder(index)
+            ? underlineColor
+            : updatedUnderlineColor
+    }
+
     private func updateUnderlines() {
-        for label in labels {
-            let index = labels.firstIndex(of: label) ?? 0
-            if (!highlightInputUnderline || !isInput(index)) && isPlaceholder(index) {
-                   underlines[index].backgroundColor = underlineColor
-            }
-            else{
-                underlines[index].backgroundColor = updatedUnderlineColor
-            }
+        for (index, underline) in underlines.enumerated() {
+            underline.backgroundColor = underlineColorForIndex(index)
         }
     }
     
