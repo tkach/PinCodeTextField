@@ -9,14 +9,19 @@
 import Foundation
 
 class TextHelper {
+    
+    static let defaultSecureSymbol: Character = "•"
+    
     let text: String?
     let placeholderText: String?
     let isSecureTextEntry: Bool
+    let secureSymbol: Character
     
-    init(text: String?, placeholder: String?, isSecure: Bool = false) {
+    init(text: String?, placeholder: String?, isSecure: Bool, secureSymbol: String) {
         self.text = text
         self.placeholderText = placeholder
         self.isSecureTextEntry = isSecure
+        self.secureSymbol = secureSymbol.first ?? TextHelper.defaultSecureSymbol
     }
     
     func character(atIndex i: Int) -> Character? {
@@ -25,7 +30,7 @@ class TextHelper {
         let character: Character?
         if i < inputTextCount {
             let string = text ?? ""
-            character = isSecureTextEntry ? "•" : string[string.index(string.startIndex, offsetBy: i)]
+            character = isSecureTextEntry ? secureSymbol : string[string.index(string.startIndex, offsetBy: i)]
         }
         else if i < placeholderTextLength {
             let string = placeholderText ?? ""
