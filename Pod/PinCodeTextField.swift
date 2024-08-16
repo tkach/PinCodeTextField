@@ -9,20 +9,14 @@
 import Foundation
 import UIKit
 
-@IBDesignable open class PinCodeTextField: UIView {
+@IBDesignable public class PinCodeTextField: UIView {
     public weak var delegate: PinCodeTextFieldDelegate?
     
     //MARK: Customizable from Interface Builder
     @IBInspectable public var underlineWidth: CGFloat = 40
     @IBInspectable public var underlineHSpacing: CGFloat = 10
     @IBInspectable public var underlineVMargin: CGFloat = 0
-    @IBInspectable public var characterLimit: Int = 4 {
-        willSet {
-            if characterLimit != newValue {
-                updateView()
-            }
-        }
-    }
+    @IBInspectable public var characterLimit: Int = 5
     @IBInspectable public var underlineHeight: CGFloat = 3
     @IBInspectable public var placeholderText: String?
     @IBInspectable public var text: String? {
@@ -42,20 +36,17 @@ import UIKit
     @IBInspectable public var updatedUnderlineColor: UIColor = UIColor.clear
     @IBInspectable public var secureText: Bool = false
     @IBInspectable public var needToUpdateUnderlines: Bool = true
-    @IBInspectable public var characterBackgroundColor: UIColor = UIColor.clear
-    @IBInspectable public var characterBackgroundCornerRadius: CGFloat = 0
-    @IBInspectable public var highlightInputUnderline: Bool = false
     
     //MARK: Customizable from code
     public var keyboardType: UIKeyboardType = UIKeyboardType.alphabet
+    public var textContentType: UITextContentType = UITextContentType.oneTimeCode
     public var keyboardAppearance: UIKeyboardAppearance = UIKeyboardAppearance.default
     public var autocorrectionType: UITextAutocorrectionType = UITextAutocorrectionType.no
     public var font: UIFont = UIFont.systemFont(ofSize: 14)
     public var allowedCharacterSet: CharacterSet = CharacterSet.alphanumerics
-    public var textContentType: UITextContentType! = nil
     
     private var _inputView: UIView?
-    open override var inputView: UIView? {
+    public override var inputView: UIView? {
         get {
             return _inputView
         }
@@ -66,7 +57,7 @@ import UIKit
     
     // UIResponder
     private var _inputAccessoryView: UIView?
-    @IBOutlet open override var inputAccessoryView: UIView? {
+    @IBOutlet public override var inputAccessoryView: UIView? {
         get {
             return _inputAccessoryView
         }
@@ -85,13 +76,12 @@ import UIKit
     }
     
     //MARK: Private
-    private var labels: [UILabel] = []
-    private var underlines: [UIView] = []
-    private var backgrounds: [UIView] = []
+    fileprivate var labels: [UILabel] = []
+    fileprivate var underlines: [UIView] = []
     
     
     //MARK: Init and awake
-    override public init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         postInitialize()
     }
@@ -100,12 +90,12 @@ import UIKit
         super.init(coder: aDecoder)
     }
     
-    override open func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         postInitialize()
     }
     
-    override open func prepareForInterfaceBuilder() {
+    override public func prepareForInterfaceBuilder() {
         postInitialize()
     }
     
@@ -114,34 +104,31 @@ import UIKit
     }
     
     //MARK: Overrides
-    override open func layoutSubviews() {
+    override public func layoutSubviews() {
         layoutCharactersAndPlaceholders()
         super.layoutSubviews()
     }
     
-    override open var canBecomeFirstResponder: Bool {
+    override public var canBecomeFirstResponder: Bool {
         return true
     }
     
-    @discardableResult override open func becomeFirstResponder() -> Bool {
+    @discardableResult override public func becomeFirstResponder() -> Bool {
         delegate?.textFieldDidBeginEditing(self)
         return super.becomeFirstResponder()
     }
     
-    @discardableResult override open func resignFirstResponder() -> Bool {
+    @discardableResult override public func resignFirstResponder() -> Bool {
         delegate?.textFieldDidEndEditing(self)
         return super.resignFirstResponder()
     }
     
     //MARK: Private
-    private func updateView() {
-        if needToRecreateBackgrounds() {
-            recreateBackgrounds()
-        }
-        if needToRecreateUnderlines() {
+    fileprivate func updateView() {
+        if (needToRecreateUnderlines()) {
             recreateUnderlines()
         }
-        if needToRecreateLabels() {
+        if (needToRecreateLabels()) {
             recreateLabels()
         }
         updateLabels()
@@ -149,7 +136,6 @@ import UIKit
         if needToUpdateUnderlines {
             updateUnderlines()
         }
-        updateBackgrounds()
         setNeedsLayout()
     }
     
@@ -159,10 +145,6 @@ import UIKit
     
     private func needToRecreateLabels() -> Bool {
         return characterLimit != labels.count
-    }
-    
-    private func needToRecreateBackgrounds() -> Bool {
-        return characterLimit != backgrounds.count
     }
     
     private func recreateUnderlines() {
@@ -185,20 +167,10 @@ import UIKit
         }
     }
     
-    private func recreateBackgrounds() {
-        backgrounds.forEach{ $0.removeFromSuperview() }
-        backgrounds.removeAll()
-        characterLimit.times {
-            let background = createBackground()
-            backgrounds.append(background)
-            addSubview(background)
-        }
-    }
-    
     private func updateLabels() {
         let textHelper = TextHelper(text: text, placeholder: placeholderText, isSecure: isSecureTextEntry)
         for label in labels {
-            let index = labels.firstIndex(of: label) ?? 0
+            let index = labels.index(of: label) ?? 0
             let currentCharacter = textHelper.character(atIndex: index)
             label.text = currentCharacter.map { String($0) }
             label.font = font
@@ -209,20 +181,13 @@ import UIKit
 
     private func updateUnderlines() {
         for label in labels {
-            let index = labels.firstIndex(of: label) ?? 0
-            if (!highlightInputUnderline || !isInput(index)) && isPlaceholder(index) {
+            let index = labels.index(of: label) ?? 0
+            if isPlaceholder(index) {
                    underlines[index].backgroundColor = underlineColor
             }
             else{
                 underlines[index].backgroundColor = updatedUnderlineColor
             }
-        }
-    }
-    
-    private func updateBackgrounds() {
-        for background in backgrounds {
-            background.backgroundColor = characterBackgroundColor
-            background.layer.cornerRadius = characterBackgroundCornerRadius
         }
     }
     
@@ -233,11 +198,6 @@ import UIKit
     private func isPlaceholder(_ i: Int) -> Bool {
         let inputTextCount = text?.count ?? 0
         return i >= inputTextCount
-    }
-    
-    private func isInput(_ i: Int) -> Bool {
-        let inputTextCount = text?.count ?? 0
-        return i == inputTextCount
     }
     
     private func createLabel() -> UILabel {
@@ -254,14 +214,6 @@ import UIKit
         return underline
     }
     
-    private func createBackground() -> UIView {
-        let background = UIView()
-        background.backgroundColor = characterBackgroundColor
-        background.layer.cornerRadius = characterBackgroundCornerRadius
-        background.clipsToBounds = true
-        return background
-    }
-    
     private func layoutCharactersAndPlaceholders() {
         let marginsCount = characterLimit - 1
         let totalMarginsWidth = underlineHSpacing * CGFloat(marginsCount)
@@ -273,11 +225,8 @@ import UIKit
         let totalLabelHeight = font.ascender + font.descender
         let underlineY = bounds.height / 2 + totalLabelHeight / 2 + underlineVMargin
         
-        for i in 0..<underlines.count {
-            let underline = underlines[i]
-            let background = backgrounds[i]
-            underline.frame = CGRect(x: currentUnderlineX, y: underlineY, width: underlineWidth, height: underlineHeight)
-            background.frame = CGRect(x: currentUnderlineX, y: 0, width: underlineWidth, height: bounds.height)
+        underlines.forEach{
+            $0.frame = CGRect(x: currentUnderlineX, y: underlineY, width: underlineWidth, height: underlineHeight)
             currentUnderlineX += underlineWidth + underlineHSpacing
         }
         
@@ -292,7 +241,7 @@ import UIKit
     }
     
     //MARK: Touches
-    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {
             return
         }
